@@ -15,6 +15,10 @@ class Engine:
         self.persons = reader.PersReader(path=pers_path) if pers_path else None
         self.reference = biblio.Biblio(path=bib_path) if bib_path else None
         self.description = reader.DescReader(path=desc_path) if desc_path else None
+        self.vocabulary = None
+        if self.description:
+            self.vocabulary = list(self.desc.keys())
+            self.vocabulary.sort()
         self.facsimile = reader.FacsReader(path=facs_path) if facs_path else None
 
 
