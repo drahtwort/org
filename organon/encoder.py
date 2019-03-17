@@ -1,6 +1,7 @@
 """
 Encode your data.
 """
+import os
 
 
 from organon import utility
@@ -16,13 +17,16 @@ class EncodeCTS:
         self.txt = txt
         self.bib = bib
         self.pers = pers
-        self.cts_dir = cts_dir+'/'+cts_ns+'/data/'
+        self.cts_dir = cts_dir + '/' + cts_ns + '/data/'
         self.ns_cts = 'urn:cts:'+cts_ns+':'
         self.ns_xml = '{http://www.w3.org/XML/1998/namespace}'
         self.ns_tei = '{http://www.tei-c.org/ns/1.0}'
         self.mod_path = cts_xml
         self.mod_xml = self.get_model()
         self.entries = self.bib.entries
+
+        if not os.path.exists(self.cts_dir):
+            os.makedirs(self.cts_dir)
 
     def get_model(self):
         return utility.read_xml_file(self.mod_path)

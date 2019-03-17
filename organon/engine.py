@@ -23,7 +23,21 @@ class Engine:
 
 
     def encode(self, cts_dir, cts_ns, cts_xml):
-        return encoder.EncodeCTS(self.text, self.reference, self.persons, cts_dir, cts_ns, cts_xml) if self.text and self.reference else None
+        return encoder.EncodeCTS(self.text,
+                                 self.reference,
+                                 self.persons,
+                                 cts_dir,
+                                 cts_ns,
+                                 cts_xml) if (self.text and self.reference) else None
 
     def static(self, www_dir):
-        return static.StaticHTML(www_dir, self.text, self.reference, self.persons.data, self.description.data, self.facsimile.data) if self.text else None
+        return static.StaticHTML(www_dir,
+                                 self.text,
+                                 self.reference,
+                                 self.persons.data,
+                                 self.description.data,
+                                 self.facsimile.data) if (self.text and
+                                                          self.reference and
+                                                          self.persons and
+                                                          self.description and
+                                                          self.facsimile) else None
