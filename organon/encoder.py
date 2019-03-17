@@ -17,7 +17,7 @@ class EncodeCTS:
         self.txt = txt
         self.bib = bib
         self.pers = pers
-        self.cts_dir = cts_dir + '/' + cts_ns + '/data/'
+        self.cts_dir = cts_dir + '/data/'
         self.ns_cts = 'urn:cts:'+cts_ns+':'
         self.ns_xml = '{http://www.w3.org/XML/1998/namespace}'
         self.ns_tei = '{http://www.tei-c.org/ns/1.0}'
