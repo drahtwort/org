@@ -5,9 +5,9 @@ Generate static content.
 import os
 import shutil
 
+from lxml import etree
 from copy import deepcopy
 from unidecode import unidecode
-from lxml import etree
 
 from organon import utility
 
@@ -162,7 +162,7 @@ class StaticHTML:
                         if i:
                             utility.create_html_delimiter(body)
                         # re.findall(r"'(.*?)'", content[k][0])
-                        utility.create_html_text_node(content[k][0], body)
+                        utility.create_html_text_node(content[k], body)
                     utility.create_html_delimiter(body)
                     utility.write_html_file_pretty(self.corp_ed_path + f[2:], root)
                 else:
@@ -188,7 +188,7 @@ class StaticHTML:
                         utility.create_html_text_node(meta,body)
                         utility.create_html_delimiter(body)
                         # re.findall(r"'(.*?)'", content[k][0])
-                        utility.create_html_text_node(content[k][0], body)
+                        utility.create_html_text_node(content[k], body)
                         utility.create_html_delimiter(body)
                         if i < len(passages) - 1:
                             np = i + 1
@@ -229,7 +229,7 @@ class StaticHTML:
                             content = self.txt.content[ref]
                             passages = list(content.keys())
                             for i, k in enumerate(content):
-                                utility.create_html_text_node(content[k][0], body)
+                                utility.create_html_text_node(content[k], body)
                                 utility.create_html_delimiter(body)
                             fp = self.corp_group_path + ref + '.html'
                             utility.write_html_file_pretty(fp, root)
@@ -285,12 +285,10 @@ class StaticHTML:
                             text = ''
                             for i in range(start, finish+1):
                                 content = self.txt.content[urn][str(i)]
-                                text += content[0].strip() + '\n\n'
-                                # page = content[1]
+                                text += content + '\n\n'
                         else:
                             content = self.txt.content[urn][passage[0]]
-                            text += content[0].strip() + '\n\n'
-                            # page = content[1]
+                            text += content + '\n\n'
                 else:
                     print("desc: can not find material", urn)
                     continue

@@ -1,5 +1,5 @@
 """
-Reference the textual data.
+Reference your data.
 """
 
 from pybtex.database import parse_file
@@ -8,7 +8,7 @@ from pybtex.database import parse_file
 class Biblio:
 
     def __init__(self, path=''):
-        self.path = path    
+        self.path = path
         self.file = self.get_file()
         self.entries = self.file.entries # self.get_entries()
         self.bibkeys = self.entries.keys()

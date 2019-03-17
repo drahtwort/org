@@ -1,18 +1,12 @@
 """
-Read the textual data.
+Read your data.
 """
 
 import os
 
 from organon import utility
 
-class FacsReader:
-
-    def __init__(self, path):
-        self.path = path
-        self.data = utility.read_json_file(self.path)
-
-class DescReader:
+class JsonReader:
 
     def __init__(self, path):
         self.path = path
@@ -39,7 +33,7 @@ class PersReader:
                 i = i + 1
         return data
 
-class Reader:
+class PlainReader:
 
     def __init__(self, txt_path=''):
         self.base = txt_path
@@ -64,8 +58,13 @@ class Reader:
                 key = path.split("/")[-1:][0].replace(".txt","")
                 lines = f.readlines()
                 content[key] = {}
-                for j, line in enumerate(lines):
-                    content[key][str(j)] = line.strip()
+                counter = 1
+                for line in lines:
+                    if line.strip():
+                        content[key][str(counter)] = line.strip()
+                        counter += 1
+                    else:
+                        continue
         return content
 
     def _get_txt_identifiers(self):

@@ -1,5 +1,5 @@
 """
-Encode the textual data.
+Encode your data.
 """
 
 
@@ -94,13 +94,13 @@ class EncodeCTS:
         for pssg in self.txt.content[pid]:
             p = etree.SubElement(body, 'p')
             p.attrib['n'] = pssg
-            p.text = self.txt.content[pid][pssg][0]
+            p.text = self.txt.content[pid][pssg]
         return tree
 
     def to_cts_xml(self):
         # print("creating files at following path:")
         print(self.cts_dir)
-        for i in self.txt.ids:
+        for i in self.txt.identifiers:
             f = i + '.xml'
             fp = self.cts_dir + f
             tree = self.fill_modell(i)
